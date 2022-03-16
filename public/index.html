@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>ATHLEISURE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cartModalLabel">Maximum quantity added!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Athleisure.si</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="curated.html">Curated</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="categories.html">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cart.html">Cart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="account.html">Account</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id="action" class="container-fluid">
+    <h2>Winter products clearance!</h2>
+    <h3 id="actionTime">From: To: </h3>
+    <h3 id="actionTimeLeft">Time left: </h3>
+    <table id="productsTable" class="table"></table>
+    <hr>
+</div>
+<div id="membership" class="container-fluid">
+    <h2>Membership coupons</h2>
+    <div class="row m-0 p-1">
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <h4>Bronze</h4>
+                <p>You get:</p>
+                <p>5% off everything</p>
+                <p id="priceB">10 €</p>
+                <button class="btn btn-primary" onclick="membershipCouponsAdd(5)">Buy</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <h4>Silver</h4>
+                <p>You get:</p>
+                <p>15% off everything</p>
+                <p id="priceS">25 €</p>
+                <button class="btn btn-primary" onclick="membershipCouponsAdd(15)">Buy</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <h4>Gold</h4>
+                <p>You get:</p>
+                <p>25% off everything</p>
+                <p id="priceG">100 €</p>
+                <button class="btn btn-primary" onclick="membershipCouponsAdd(25)">Buy</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <h4>Diamond</h4>
+                <p>You get:</p>
+                <p>50% off everything</p>
+                <p id="priceD">500 €</p>
+                <button class="btn btn-primary" onclick="membershipCouponsAdd(50)">Buy</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+<form id="adminForm" onsubmit="return productsAvailableAdd()" class="container-fluid">
+    <div id="adminAlert" class="alert alert-warning m-3" role="alert">
+        This is a warning alert—check it out!
+    </div>
+    <h2>Admin form</h2>
+    <label for="src">Image src: </label>
+    <input type="text" id="src" name="src"><br>
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name"><br>
+    <label for="color">Color: </label>
+    <select name="color" id="color">
+        <option value="red">red</option>
+        <option value="black">black</option>
+        <option value="navy">navy</option>
+        <option value="blue">blue</option>
+        <option value="yellow">yellow</option>
+        <option value="orange">orange</option>
+        <option value="white">white</option>
+        <option value="grey">grey</option>
+    </select><br>
+    <label for="quantity">Quantity: </label>
+    <input type="number" id="quantity" name="quantity" min="1" value="1"><br>
+    <label for="price_in_euros">Price in euros: </label>
+    <input type="number" id="price_in_euros" name="price_in_euros" min="1" value="1"><br>
+    <input type="submit" value="Add product" class="btn btn-primary">
+    <hr>
+</form>
+<div class="text-center p-3 bg-info">
+    © 2021 Copyright: Athleisure.si
+</div>
+
+<script src="index.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
+<!--TODO this to javascript-->
+<!--
+    <div class="row m-0 p-1">
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <div class="imageToSquare">
+                    <img src="products/Jacket%20MIDNIGHT.png">
+                </div>
+                <h4>Jacket<br>MIDNIGHT</h4>
+                <p>Color: black</p>
+                <p>Pieces left: 5</p>
+                <p>Price: 20 €</p>
+                <button class="btn btn-primary" onclick="cartProductAdd(this)">Add to cart</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <div class="imageToSquare">
+                    <img src="products/Beanie%20CASUAL.png">
+                </div>
+                <h4>Beanie<br>CASUAL</h4>
+                <p>Color: black</p>
+                <p>Pieces left: 2</p>
+                <p>Price: 5 €</p>
+                <button class="btn btn-primary" onclick="cartProductAdd(this)">Add to cart</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <div class="imageToSquare">
+                    <img src="products/Neck%20gaiter%20CASUAL.png">
+                </div>
+                <h4>Neck gaiter<br>CASUAL</h4>
+                <p>Color: navy</p>
+                <p>Pieces left: 4</p>
+                <p>Price: 5 €</p>
+                <button class="btn btn-primary" onclick="cartProductAdd(this)">Add to cart</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 p-0">
+            <div class="border border-primary m-2 p-2">
+                <div class="imageToSquare">
+                    <img src="products/Gloves%20WATERPROOF.png">
+                </div>
+                <h4>Gloves<br>WATERPROOF</h4>
+                <p>Color: black</p>
+                <p>Pieces left: 6</p>
+                <p>Price: 10 €</p>
+                <button class="btn btn-primary" onclick="cartProductAdd(this)">Add to cart</button>
+            </div>
+        </div>
+    </div>
+-->
